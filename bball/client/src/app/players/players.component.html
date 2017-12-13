@@ -1,0 +1,8 @@
+<form>
+  <input type='text' name='name' [(ngModel)] = 'player.name'>
+  <input type='submit' value='add Player' (click)='addPlayer()'>
+</form>
+
+<div *ngFor='let player of players'>
+  <p>Name: {{player.name }}</p>
+</div>

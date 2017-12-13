@@ -1,0 +1,16 @@
+<h1>Anonymous Notes</h1>
+<form>
+  <p>Note: 
+    <input type="text" name="content" [(ngModel)] = 'note.content'>
+    <input type="submit" value="add Note" (click)='addNote()'>
+  </p>
+</form>
+ 
+<div id=scroll>
+  <div class="history" *ngFor='let x of notes'>
+    <p>{{ x.created_at | date}}</p>
+    <p>{{ x.content }}</p>
+    <p *ngIf='!x.content'>Content was not stored for this note</p>
+  </div>
+</div>
+
