@@ -1,0 +1,13 @@
+.red{
+    color: red;
+}
+
+div{
+    border: black solid 2px;
+    padding: 10px;
+}
+
+form{
+    border: black solid 2px;
+    padding: 10px;
+}

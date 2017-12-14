@@ -25,6 +25,7 @@ export class PlayersComponent implements OnInit {
   addPlayer(){
     this._playersService.addPlayer(this.player, ()=>{
       this.player = {name:''}
+      
       this._playersService.getAll(()=>{
         this.players = this._playersService.players
       })     

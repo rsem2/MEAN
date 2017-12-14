@@ -9,7 +9,8 @@ app.use(express.static(path.join(__dirname, './client/dist')))
 app.use(bp.json())
 app.use(session({secret:'asdfghjkl'}))
 
-
+require('./server/config/mongoose')
+require('./server/config/routes')(app)
 
 app.listen(port,()=>{
     console.log('listening on port 8000')

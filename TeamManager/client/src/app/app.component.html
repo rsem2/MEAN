@@ -1,8 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
+<div id="navbar">
+  <h3>
+    <a [routerLink]="['players','list']">Manage Players</a>
+    |
+    <a [routerLink]="['status','game','1']">Manage Player Status</a>
+    |
+    <a [routerLink]="['status','players','addplayer']">Add a player</a>
+  </h3>
+</div>
 
-  
+<router-outlet></router-outlet>
+
+
 
