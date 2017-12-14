@@ -32,23 +32,17 @@ export class BeltService {
         })
         cb()
       }
-
     }
-
-    editUser(this.user, cb){
-      
-    }
-
-    
-
-
-    // let string = '/adduser/'+user
-    // this.user = user;
-    // this._http.get(string).subscribe((res)=>{
-    //   console.log('returning from adding user in service:')
-    //   cb()
-    //   })
   }
+
+  editUser(item, cb){
+    console.log('in services')
+    let string = '/edituser/'+item._id;
+    this._http.post(string, item).subscribe((res)=>{
+        console.log('in service cb')
+      })
+      cb()
+    }
 
   getUsers(cb){
     this._http.get('/allusers').subscribe((res)=>{
@@ -57,16 +51,11 @@ export class BeltService {
     })
   }
 
-  // checkLogin(){
-  //   console.log('in service about to check if someone is logged in')
-  //   this._http.get('/loggedin').subscribe((res)=>{
-  //     // this.user = res;
-  //     console.log(res)
-  //     console.log('on the way back in service finding out if someone was logged in')
-  //   })
-  // }
-
-  logout(cb){
+  logout(){
+    this.user = undefined
+    this._http.get('/logout').subscribe((res)=>{
+      console.log('logged out')
+      })
     console.log('logging out')
   }
 }

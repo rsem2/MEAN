@@ -19,15 +19,10 @@ module.exports = function(app){
         user.editUser(req,res)
     })
 
-    // app.get('/loggedin', function(req,res){  
-    //     console.log('in routes the logged in person is: ',req.session.user_name )
-    //     if(req.session.user_name == undefined){
-    //         return res.redirect('/')
-    //     }
-    //     else{
-    //         return res.redirect('/dashboard')
-    //     }
-    // })
+    app.get('/logout', function(req,res){  
+        req.session.user_name = undefined;
+        
+    })
 
     app.get("*", function(req,res){
         res.redirect('/')

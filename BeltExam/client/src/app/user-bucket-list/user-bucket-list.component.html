@@ -1,5 +1,7 @@
 <h1>Welcome, {{ log }}!</h1>
 
+<button (click)='logout()'>Logout?</button>
+
 <form name="bucketlist" #bucketListForm="ngForm" (submit)="onSubmit()">
   
     <p>

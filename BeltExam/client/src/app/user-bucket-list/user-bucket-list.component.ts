@@ -82,5 +82,11 @@ export class UserBucketListComponent implements OnInit {
   })
 }
 
+logout(){
+  this.log = undefined
+  this._service.logout()
+  this.router.navigate(['/']);
+}
+
 
 }
