@@ -1,0 +1,29 @@
+<h1>{{ name }}</h1>
+
+
+<h2>Done:</h2>
+
+<h5 *ngFor='let y of personalList'>
+  
+  <p *ngIf='y.completed'>
+      <input id="checkbox-3" class="checkbox-custom" name="checkbox-3" type="checkbox" checked>
+      
+      {{ y.title}} - 
+      {{ y.description}} - 
+      {{ y.created_at | date:'longDate' }}
+  </p>
+
+</h5>
+
+<h2>Pending:</h2>
+
+<h5 *ngFor='let y of personalList'>
+  
+  <p *ngIf='!y.completed'>
+      <input id="checkbox-3" class="checkbox-custom" name="checkbox-3" type="checkbox">
+      {{ y.title}} - 
+      {{ y.description}} - 
+      {{ y.created_at | date:'longDate' }}
+  </p>
+
+</h5>

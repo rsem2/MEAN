@@ -31,6 +31,9 @@ export class PlayerStatusComponent implements OnInit {
   status(id, status, gameNo){
 
     this._service.findPlayer(id,()=>{
+      console.log('this should happen at the end of the find as the player has been identified')
+      console.log(this._service.player[0].name)
+      
       this.player = this._service.player
       this.player = this.player[0]
       let string = 'game'+gameNo

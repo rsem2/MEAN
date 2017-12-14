@@ -1,0 +1,14 @@
+<h1>Bucket Lists</h1>
+<form name="user" #playerForm="ngForm" (submit)="onSubmit()">
+
+  <p>
+    Name: 
+    <input type="text" name="name" [(ngModel)]="user.name" #name="ngModel">
+  </p>
+
+  <p>
+    <input type="submit" value="Enter">
+  </p>
+</form>
+
+<button (click)='logout()'>Logout</button>

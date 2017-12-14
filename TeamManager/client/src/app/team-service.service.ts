@@ -42,9 +42,11 @@ export class TeamServiceService {
 
   findPlayer(id, cb){
     let string = '/findplayer/'+id;
-    console.log(string)
+    console.log('string to send to the route finding the player from id: ',string)
     this._http.get(string).subscribe((res)=>{
+      console.log('returning back from the route in the service with the player information')
       this.player = res.json()
+      console.log('service player information', res.json())
       cb()
     })
   }

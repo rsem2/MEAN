@@ -1,0 +1,51 @@
+<h1>Welcome, {{ log }}!</h1>
+
+<form name="bucketlist" #bucketListForm="ngForm" (submit)="onSubmit()">
+  
+    <p>
+
+      <input type="text" name="title" placeholder="Title" required minlength="5" [(ngModel)]="bucketlist.title" #title="ngModel">
+      <span class="red" *ngIf="title.errors">
+        <span *ngIf="title.errors.required">Title is required</span>
+        <span *ngIf="title.errors.minlength">Title must be at least 5 characters in length</span>
+      </span>
+
+      <input type="text" name="description" required minlength="10" [(ngModel)]="bucketlist.description" #description="ngModel">
+      <span class="red" *ngIf="description.errors">
+        <span *ngIf="description.errors.required">Description is required</span>
+        <span *ngIf="description.errors.minlength">Description must be at least 10 characters in length</span>
+      </span>
+
+      <select name="user" [(ngModel)]="bucketlist.user" #user="ngModel">
+        <option *ngFor='let x of users' value={{x.name}} >{{x.name}}</option>
+      </select>
+
+      <input *ngIf="bucketListForm.valid" type="submit" value="Add to list">
+    </p>
+  </form>
+
+  <div>
+    <h2>Before I die I want to:</h2>
+    <h4 *ngFor='let y of users'>
+      <h5 *ngIf='y.name == log'>
+        <p *ngFor='let z of y.bucketList'>
+          <button (click)="updateItem(z.title)">
+            <input *ngIf='z.completed' id="checkbox-3" class="checkbox-custom" name="checkbox-3" type="checkbox" checked>
+            <input *ngIf='!z.completed' id="checkbox-3" class="checkbox-custom" name="checkbox-3" type="checkbox">
+          </button>
+            {{ y.name }} | 
+            {{ z.title}} - 
+            {{ z.description}} - 
+            {{ z.created_at | date:'longDate' }}
+        </p>
+      </h5>
+    </h4>
+  </div>
+
+  <h2>List of other users</h2>
+  <p *ngFor='let y of users'>
+    <a *ngIf='y.name != log' [routerLink]="['/','user',y._id]" >{{ y.name }}</a>
+  </p>
+
+ 
+

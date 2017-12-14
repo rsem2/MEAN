@@ -26,6 +26,7 @@ module.exports = {
 
     findPlayer: function(req, res){
         Player.find({_id: req.params.id}, function(err, player){
+            console.log('final step... in the controller with the player:', player.name)
             return res.json(player);
         })
     },

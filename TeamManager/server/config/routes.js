@@ -21,7 +21,9 @@ module.exports = function(app){
     })
 
     app.get('/findplayer/:id', function(req,res){
+        console.log('in the routes before going on to the controller')
         player.findPlayer(req, res)
+        console.log('on the way back from the controller with the player', res.body)
     })
 
     app.get("*", function(req,res){
