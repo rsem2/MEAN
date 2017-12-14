@@ -1,9 +1,27 @@
 <h1>Player Status - Game {{ gameNo }}</h1>
 
 <h3>
-    <a [routerLink]="['/','status','game','1']">Game 1</a>
-    |
-    <a [routerLink]="['/','status','game','2']">Game 2</a>
-    |
-    <a [routerLink]="['/','status','game','3']">Game 3</a>
-  </h3>
+  <a [routerLink]="['/','status','game','1']">Game 1</a>
+  |
+  <a [routerLink]="['/','status','game','2']">Game 2</a>
+  |
+  <a [routerLink]="['/','status','game','3']">Game 3</a>
+</h3>
+
+<table>
+  <tr>
+    <th>Player Name</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let player of players">
+    <td>{{ player.name }}</td>
+    <td *ngIf='gameNo == 1'>{{ player.game1 }} 
+      <button (click)="status(player._id, 'Playing', 1)">Playing</button> 
+      <button (click)="status(player._id, 'NotPlaying', 1)">Not Playing</button>
+      <button (click)="status(player._id, 'Undecided', 1)">Undecided</button>
+    </td>
+
+    <td *ngIf='gameNo == 2'>{{ player.game2 }}</td>
+    <td *ngIf='gameNo == 3'>{{ player.game3 }}</td>
+  </tr>
+</table>

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class TeamServiceService {
   players;
+  player;
 
   constructor(private _http: Http, private router: Router) { 
     this.players = []
@@ -17,27 +18,33 @@ export class TeamServiceService {
     })
   }
 
-  // deletePlayer(id, cb){
-  //   this._http.post('/removeplayer', id).subscribe((res){
-  //     this.getAll(()=>{
-  //       console.log('getting all players')
-  //     })
-  //   })
-  // }
+  editPlayer(player, cb){
+    console.log('in service editing player')
+    let string = '/editplayer/'+player._id;
+    this._http.post(string, player).subscribe((res)=>{
+      console.log('in service cb')
+    })
+    cb()
+  }
 
   deletePlayer(id, cb){
     let string = '/removeplayer/'+id;
     this._http.get(string).subscribe((res)=>{
-      console.log('this should redirect...')
-      // console.log(res)
-      // cb()
     })
   }
 
   getAll(cb){
-    console.log('in service')
     this._http.get('/allplayers').subscribe((res)=>{
       this.players = res.json()
+      cb()
+    })
+  }
+
+  findPlayer(id, cb){
+    let string = '/findplayer/'+id;
+    console.log(string)
+    this._http.get(string).subscribe((res)=>{
+      this.player = res.json()
       cb()
     })
   }

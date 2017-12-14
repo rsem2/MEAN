@@ -6,14 +6,22 @@ module.exports = function(app){
         return res.json(req.body)
     })
 
+    app.post('/editplayer/:id', function(req,res){
+        console.log('in routes editing')
+        player.editPlayer(req,res)
+    })
+
     app.get('/allplayers', function(req,res){
-        console.log('in routes')
+        console.log('in routes finding info on all players')
         player.getAll(req,res)
     })
 
     app.get('/removeplayer/:id', function(req,res){
         player.removePlayer(req, res)
-        // return res.json()
+    })
+
+    app.get('/findplayer/:id', function(req,res){
+        player.findPlayer(req, res)
     })
 
     app.get("*", function(req,res){

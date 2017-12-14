@@ -16,15 +16,28 @@ module.exports = {
     },
 
     removePlayer: function(req,res){
-        console.log('in controller')
-        console.log(req.params.id)
         Player.remove({_id:req.params.id}, function(err,target){
             if (err){console.log("failed grab")}
             else{
                 res.json(target);
             }
         })
+    },
 
+    findPlayer: function(req, res){
+        Player.find({_id: req.params.id}, function(err, player){
+            return res.json(player);
+        })
+    },
+
+    editPlayer: function(req,res){
+        console.log('in controller before finding req')
+        console.log(req.params.id)
+        console.log(req.body)
+        Player.findByIdAndUpdate(req.params.id, req.body, function(err, player){
+            return res.json(player)
+        })
+        console.log('in the controller editing')
     }
 
 

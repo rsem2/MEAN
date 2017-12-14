@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamServiceService } from '../team-service.service';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-player-status',
@@ -9,25 +10,44 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PlayerStatusComponent implements OnInit {
   players;
-  gameString;
   gameNo;
+  player;
 
-  constructor(private _service: TeamServiceService, private _route: ActivatedRoute) { 
+  constructor(private _service: TeamServiceService, private _route: ActivatedRoute, private router: Router) { 
     this.players = []
-    this.gameString = 'game1'
   }
 
   ngOnInit() {
     this._route.paramMap.subscribe( params => {
-      this.gameString = 'game'+params.get('gameno');
       this.gameNo = params.get('gameno')
-      console.log(this.gameString)
     })
 
-    this.players = this._service.getAll(()=>{
-      console.log('getting players')
+    this._service.getAll(()=>{
+      this.players = this._service.players
     })
-  // }
+
+  }
+
+  status(id, status, gameNo){
+
+    this._service.findPlayer(id,()=>{
+      this.player = this._service.player
+      this.player = this.player[0]
+      let string = 'game'+gameNo
+      this.player[string] = status
+    })
+
+    this._service.editPlayer(this.player, ()=>{
+      // this.players = this._service.players
+      console.log('updated player')
+      // this._service.getAll(()=>{
+      //   this.players = this._service.players
+      // })
+    })
+
+    this._service.getAll(()=>{
+      this.players = this._service.players
+    })
   }
 
 }
