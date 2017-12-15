@@ -9,8 +9,9 @@
 <h5 *ngFor='let y of personalList'>
   
   <p *ngIf='y.completed'>
-      <input id="checkbox-3" class="checkbox-custom" name="checkbox-3" type="checkbox" checked>
-      
+      <input id="checkbox-3" class="checkbox-custom" name="checkbox-3" type="checkbox" checked disabled>
+      <span *ngIf='y.created_by'>{{ y.created_by }} |</span>
+      <span *ngIf='!y.created_by'>Item added before code adjusted |</span>
       {{ y.title}} - 
       {{ y.description}} - 
       {{ y.created_at | date:'longDate' }}
@@ -23,7 +24,9 @@
 <h5 *ngFor='let y of personalList'>
   
   <p *ngIf='!y.completed'>
-      <input id="checkbox-3" class="checkbox-custom" name="checkbox-3" type="checkbox">
+      <input id="checkbox-3" class="checkbox-custom" name="checkbox-3" type="checkbox" disabled>
+      <span *ngIf='y.created_by'>{{ y.created_by }} |</span>
+      <span *ngIf='!y.created_by'>Item added before code adjusted |</span>
       {{ y.title}} - 
       {{ y.description}} - 
       {{ y.created_at | date:'longDate' }}

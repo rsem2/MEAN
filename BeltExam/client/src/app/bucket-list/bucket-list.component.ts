@@ -26,7 +26,6 @@ export class BucketListComponent implements OnInit {
    }
 
   ngOnInit() {
-    console.log('is this not initialising init?')
     this.log = this._service.user
     if(!this.log){
       this.router.navigate(['/']);
@@ -40,7 +39,6 @@ export class BucketListComponent implements OnInit {
     console.log(this.users)
 
     for(let i=0; i<this.users.length;i++){
-      console.log('in the for loop')
       console.log(this.users[i]._id, this.person)
       if(this.users[i]._id == this.person){
         this.name = this.users[i].name

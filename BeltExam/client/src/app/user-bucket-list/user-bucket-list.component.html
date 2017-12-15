@@ -35,7 +35,8 @@
             <input *ngIf='z.completed' id="checkbox-3" class="checkbox-custom" name="checkbox-3" type="checkbox" checked>
             <input *ngIf='!z.completed' id="checkbox-3" class="checkbox-custom" name="checkbox-3" type="checkbox">
           </button>
-            {{ y.name }} | 
+            <span *ngIf='z.created_by'>{{ z.created_by }} |</span>
+            <span *ngIf='!z.created_by'>Item added before code adjusted |</span>
             {{ z.title}} - 
             {{ z.description}} - 
             {{ z.created_at | date:'longDate' }}

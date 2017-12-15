@@ -21,7 +21,7 @@ export class BeltService {
   }
 
   addItem(item, cb){
-    console.log('adding this item in service:',item)
+    console.log('adding this item in service to the other persons page:',item)
     for(var i=0; i<this.users.length; i++){
       if(this.users[i].name == item.user){
         this.users[i].bucketList.push(item)
@@ -30,9 +30,29 @@ export class BeltService {
         this._http.post(string, this.users[i]).subscribe((res)=>{
           console.log('in service cb')
         })
+      }
+    }
+    console.log('adding this item in service to my page:',item)
+    for(var i=0; i<this.users.length; i++){
+      if(this.users[i].name == this.user){
+        item.user = this.user
+        this.users[i].bucketList.push(item)
+        console.log(this.users[i].bucketList)
+        let string = '/edituser/'+this.users[i]._id;
+        this._http.post(string, this.users[i]).subscribe((res)=>{
+          console.log('in service cb')
+          this.getUsers(()=>{
+            console.log('repopulating')
+          })
+        })
         cb()
       }
     }
+
+    this.getUsers(()=>{
+      console.log('repopulating')
+    })
+
   }
 
   editUser(item, cb){
@@ -40,6 +60,7 @@ export class BeltService {
     let string = '/edituser/'+item._id;
     this._http.post(string, item).subscribe((res)=>{
         console.log('in service cb')
+
       })
       cb()
     }

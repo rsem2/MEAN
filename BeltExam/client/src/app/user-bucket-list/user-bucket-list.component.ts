@@ -15,6 +15,7 @@ export class UserBucketListComponent implements OnInit {
     description: '',
     user: '',
     completed: false,
+    created_by: '',
     created_at: new Date()
   }
   users = []
@@ -37,8 +38,9 @@ export class UserBucketListComponent implements OnInit {
       if(this.users[i]._id == this.log){
         this.personalList = this.users[i].bucketList
       }
-
     }
+
+    this.bucketlist.created_by = this.log
   }
 
   onSubmit(){
@@ -48,7 +50,8 @@ export class UserBucketListComponent implements OnInit {
         description: '',
         user: '',
         completed: false,
-        created_at: new Date()
+        created_at: new Date(),
+        created_by: this.log
       }
     })
     this._service.getUsers(()=>{
